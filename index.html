@@ -1,1 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>Agent 落地·延伸资料</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="AI Agent 落地方向延伸阅读，附议程参考资料。" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.13);
+    --text: #f0f0f0;
+    --muted: rgba(240,240,240,0.45);
+    --accent: #5b6bff;
+    --accent2: #8b5cf6;
+    --mono: "SF Mono", "Fira Code", monospace;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* hero */
+  .hero {
+    padding: 80px 24px 64px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(91,107,255,.35);
+    border-radius: 20px;
+    padding: 4px 12px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 6vw, 58px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #fff 40%, rgba(255,255,255,.45));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  /* stats row */
+  .stats {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 48px 0 0;
+  }
+  .stat {
+    flex: 1;
+    padding: 28px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -.03em;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: .04em;
+  }
+
+  /* content */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 64px 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    transition: border-color .2s;
+  }
+  .card:hover { border-color: var(--border2); }
+
+  .card-num {
+    font-size: 11px;
+    font-family: var(--mono);
+    color: var(--accent);
+    margin-bottom: 14px;
+    opacity: .7;
+  }
+  .card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.35;
+    color: #fff;
+  }
+  .card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* highlight card */
+  .card-hl {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(91,107,255,.08), rgba(139,92,246,.06));
+    border-color: rgba(91,107,255,.25);
+  }
+  .card-hl:hover { border-color: rgba(91,107,255,.45); }
+  .card-hl .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .badge {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(91,107,255,.15);
+    color: rgba(180,185,255,.9);
+    border: 1px solid rgba(91,107,255,.2);
+  }
+  .card-hl-right {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .mini-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .mini-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.02em;
+  }
+  .mini-label { font-size: 13px; color: var(--muted); }
+
+  /* cta */
+  .cta-block {
+    margin-top: 64px;
+    padding: 40px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .cta-block h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .cta-block p { font-size: 14px; color: var(--muted); }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity .15s, transform .15s;
+    white-space: nowrap;
+  }
+  .btn:hover { opacity: .85; transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border2); }
+
+  .footnote {
+    margin-top: 24px;
+    font-size: 12px;
+    color: var(--muted);
+    opacity: .6;
+  }
+
+  @media (max-width: 600px) {
+    .stats { flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat:last-child { border-bottom: none; }
+    .card-hl { grid-template-columns: 1fr; }
+    .cta-block { flex-direction: column; align-items: flex-start; }
+    .hero { padding: 56px 20px 40px; }
+    .content { padding: 0 20px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="tag">个人整理 · 延伸阅读</div>
+  <h1>Agent 落地，<br>几个值得盯的方向</h1>
+  <p>Harness 工程、自进化风险、芯片底层——行业开始认真讨论 Agent 怎么在真实系统里活下去了。</p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">70<span>+</span></div>
+      <div class="stat-label">技术嘉宾</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">7</div>
+      <div class="stat-label">闭门研讨会</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2</div>
+      <div class="stat-label">天，杭州</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">6<span>+</span></div>
+      <div class="stat-label">大厂技术团队</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="section-eyebrow">议题方向</div>
+
+  <div class="cards">
+
+    <div class="card card-hl">
+      <div>
+        <div class="card-num">01 / highlight</div>
+        <h3>Harness：从跑得起到管得住</h3>
+        <p>Agent 跑起来只是第一步。沙箱故障、Token 成本失控、版本兼容——Day-2 运维才是真正的硬骨头。阿里云工程师讲实战。</p>
+        <div class="badge-row">
+          <span class="badge">OpenKruise Agents</span>
+          <span class="badge">OpenClaw 运维</span>
+          <span class="badge">成本控制</span>
+        </div>
+      </div>
+      <div class="card-hl-right">
+        <div class="mini-stat">
+          <span class="mini-num">Day-2</span>
+          <span class="mini-label">运维是落地真正的难题</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-num">0</span>
+          <span class="mini-label">数据丢失的平滑升级方案</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-num">02</div>
+      <h3>自进化 Agent 的错误进化风险</h3>
+      <p>记忆固化错误经验、安全对齐悄悄退化——Agent 在变强的同时可能在变"坏"。交大、港大、人大、厦大博士集体来讲。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-num">03</div>
+      <h3>Agent Computer</h3>
+      <p>AI PC 是在电脑里加 AI；Agent Computer 是为 AI 重新发明计算机。原粒半导体创始人讲芯片底层逻辑。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-num">04</div>
+      <h3>还有这些方向</h3>
+      <p>Coding Agent · 深度研究智能体 · Computer-Use Agent · 多智能体协同 · Agent Skills · 两场主论坛。</p>
+    </div>
+
+  </div>
+
+  <div class="cta-block">
+    <div>
+      <h2>7 月 2–3 日 · 杭州君悦酒店</h2>
+      <p>议题信息来自 AgenticAICon 2026 公开议程，官方报名入口在这里。</p>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://aiorang.com/gtic/BYfmOvOhCafd2F" target="_blank" rel="noopener">报名注册</a>
+      <a class="btn btn-ghost" href="https://agenticaicon.zhidx.com/2026/" target="_blank" rel="noopener">大会官网</a>
+    </div>
+  </div>
+
+  <p class="footnote">这是个人整理的延伸阅读页，不是大会官方页面。不收集任何联系方式。</p>
+
+</div>
+
+</body>
+</html>
