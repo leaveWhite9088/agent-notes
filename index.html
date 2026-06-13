@@ -233,9 +233,9 @@
   .ctx-item:last-child { border-right: none; }
   .ctx-key {
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12.5px;
     color: var(--muted);
-    letter-spacing: 0.18em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     margin-bottom: 12px;
   }
@@ -291,13 +291,13 @@
   .notes {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 16px;
+    gap: 12px;
   }
   .note {
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: 4px;
-    padding: 32px 28px 28px;
+    padding: 20px 22px 18px;
     position: relative;
     transition: border-color 0.4s, background 0.4s, transform 0.4s;
     overflow: hidden;
@@ -321,11 +321,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   .note-num {
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 10.5px;
     color: var(--accent);
     letter-spacing: 0.12em;
   }
@@ -338,7 +338,7 @@
     color: var(--muted);
     transition: color 0.3s, transform 0.4s cubic-bezier(0.5, 1.5, 0.5, 1);
     font-family: var(--serif-en);
-    font-size: 16px;
+    font-size: 14px;
   }
   .note:hover .note-arrow {
     color: var(--text);
@@ -348,29 +348,29 @@
   .note h3 {
     font-family: var(--serif-cn);
     font-weight: 700;
-    font-size: 22px;
+    font-size: 17px;
     color: var(--text);
     line-height: 1.35;
-    margin-bottom: 14px;
+    margin-bottom: 8px;
     letter-spacing: -0.01em;
   }
   .note p {
-    font-size: 13.5px;
-    line-height: 1.8;
+    font-size: 12.5px;
+    line-height: 1.7;
     color: var(--text-dim);
   }
   .note p .em { color: var(--text); }
   .note .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 22px;
-    padding-top: 18px;
+    gap: 6px;
+    margin-top: 14px;
+    padding-top: 12px;
     border-top: 1px dashed var(--border);
   }
   .note .tag {
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 9.5px;
     color: var(--gold);
     letter-spacing: 0.06em;
     opacity: 0.85;
@@ -387,18 +387,18 @@
     background: linear-gradient(135deg, rgba(232, 74, 31, 0.07) 0%, rgba(232, 74, 31, 0.01) 60%, var(--bg2) 100%);
     border-color: rgba(232, 74, 31, 0.22);
   }
-  .note--feature h3 { font-size: 30px; }
-  .note--feature p { font-size: 15px; line-height: 1.85; }
+  .note--feature h3 { font-size: 20px; }
+  .note--feature p { font-size: 13px; line-height: 1.75; }
   .note--feature:hover { border-color: rgba(232, 74, 31, 0.4); }
 
   /* Big bg number inside card */
   .note-bg {
     position: absolute;
     right: -10px;
-    bottom: -50px;
+    bottom: -40px;
     font-family: var(--serif-en);
     font-weight: 300;
-    font-size: 220px;
+    font-size: 140px;
     line-height: 1;
     color: var(--text);
     opacity: 0.025;
@@ -616,7 +616,6 @@
 
     <div class="hero-sub anim d4">
       <p class="lead">Harness 工程、<span class="key">自进化风险</span>、芯片底层 —— 行业开始认真讨论 Agent 怎么在真实系统里活下来。</p>
-      <p>整理自近期一个 Agent 方向公开会议的议程线索。 <span class="src">不评价嘉宾，只把线索串起来。</span></p>
     </div>
 
     <!-- Context strip -->
@@ -728,7 +727,7 @@
       </a>
       <a class="ref-item" href="https://aiorang.com/gtic/BYfmOvOhCafd2F" target="_blank" rel="noopener">
         <span class="ref-num">[02]</span>
-        <span class="ref-label">报名入口</span>
+        <span class="ref-label">参会参考</span>
         <span class="ref-url">aiorang.com</span>
         <span class="ref-arrow">↗</span>
       </a>
