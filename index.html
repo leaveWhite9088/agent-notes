@@ -2,341 +2,776 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
-<title>Agent 落地·延伸资料</title>
+<title>Agent 落地方向 · 延伸笔记</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="AI Agent 落地方向延伸阅读，附议程参考资料。" />
+<meta name="description" content="Agent 落地的几个值得追踪的方向 — 整理自近期一个公开会议的议程线索。" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0a0a0f;
-    --bg2: #111118;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.13);
-    --text: #f0f0f0;
-    --muted: rgba(240,240,240,0.45);
-    --accent: #5b6bff;
-    --accent2: #8b5cf6;
-    --mono: "SF Mono", "Fira Code", monospace;
+    --bg: #0B0B10;
+    --bg2: #14141B;
+    --bg3: #1B1B24;
+    --text: #ECE6D9;
+    --text-dim: #A8A294;
+    --muted: #6B6B73;
+    --border: rgba(236, 230, 217, 0.08);
+    --border2: rgba(236, 230, 217, 0.18);
+    --accent: #E84A1F;
+    --accent-soft: #B5E853;
+    --gold: #D4C896;
+
+    --serif-cn: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+    --sans-cn: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    --serif-en: "Fraunces", "Times New Roman", serif;
+    --mono: "JetBrains Mono", "SF Mono", monospace;
   }
 
+  html { background: var(--bg); }
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    min-height: 100vh;
-    padding: 0;
-  }
-
-  /* hero */
-  .hero {
-    padding: 80px 24px 64px;
-    max-width: 860px;
-    margin: 0 auto;
-  }
-  .tag {
-    display: inline-block;
-    font-size: 11px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid rgba(91,107,255,.35);
-    border-radius: 20px;
-    padding: 4px 12px;
-    margin-bottom: 28px;
-  }
-  .hero h1 {
-    font-size: clamp(32px, 6vw, 58px);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -.02em;
-    margin-bottom: 20px;
-    background: linear-gradient(135deg, #fff 40%, rgba(255,255,255,.45));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero p {
-    font-size: 16px;
-    color: var(--muted);
+    font-family: var(--sans-cn);
+    font-size: 15px;
     line-height: 1.7;
-    max-width: 520px;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      linear-gradient(rgba(236, 230, 217, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(236, 230, 217, 0.025) 1px, transparent 1px);
+    background-size: 72px 72px;
+    background-position: -1px -1px;
   }
 
-  /* stats row */
-  .stats {
-    display: flex;
-    gap: 0;
-    border-top: 1px solid var(--border);
+  /* Film grain overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 200;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+  }
+
+  /* Top marquee */
+  .marquee {
+    overflow: hidden;
     border-bottom: 1px solid var(--border);
-    margin: 48px 0 0;
+    padding: 10px 0;
+    background: var(--bg);
   }
-  .stat {
-    flex: 1;
-    padding: 28px 24px;
-    border-right: 1px solid var(--border);
-  }
-  .stat:last-child { border-right: none; }
-  .stat-num {
-    font-size: 36px;
-    font-weight: 700;
-    letter-spacing: -.03em;
-    color: #fff;
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-  .stat-num span { color: var(--accent); }
-  .stat-label {
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: .04em;
-  }
-
-  /* content */
-  .content {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 24px 80px;
-  }
-
-  .section-eyebrow {
+  .marquee-track {
+    display: flex;
+    gap: 32px;
+    white-space: nowrap;
+    animation: scroll 50s linear infinite;
+    font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
     color: var(--muted);
-    margin: 64px 0 32px;
+    letter-spacing: 0.12em;
+  }
+  .marquee-track .item { display: inline-flex; align-items: center; gap: 32px; }
+  .marquee-track .sep { color: var(--accent); opacity: 0.6; }
+  .marquee-track .em { color: var(--text-dim); }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* Top bar */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+  .topbar-l, .topbar-r { display: flex; gap: 18px; align-items: center; }
+  .pulse {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2.4s ease-in-out infinite;
+    box-shadow: 0 0 12px rgba(232, 74, 31, 0.5);
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(0.75); }
+  }
+  .topbar .divider { opacity: 0.3; }
+
+  /* Hero */
+  .hero {
+    padding: 110px 0 70px;
+    position: relative;
+  }
+  .big-mark {
+    position: absolute;
+    top: 80px;
+    right: -10px;
+    font-family: var(--serif-en);
+    font-weight: 300;
+    font-size: 380px;
+    line-height: 0.85;
+    color: var(--text);
+    opacity: 0.028;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.05em;
+  }
+  .hero-eyebrow {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 44px;
   }
-  .section-eyebrow::after {
+  .hero-eyebrow .line {
+    width: 48px; height: 1px;
+    background: var(--text-dim);
+  }
+  .hero-eyebrow .accent { color: var(--accent); }
+
+  .hero h1 {
+    font-family: var(--serif-cn);
+    font-weight: 900;
+    font-size: clamp(52px, 8.2vw, 104px);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero h1 .em {
+    color: var(--accent);
+    font-style: normal;
+    position: relative;
+    display: inline-block;
+  }
+  .hero h1 .em::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.08em;
+    height: 0.06em;
+    background: var(--accent);
+    opacity: 0.18;
+  }
+  .hero h1 .en {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.42em;
+    color: var(--text-dim);
+    display: inline-block;
+    margin-left: 0.2em;
+    vertical-align: 0.5em;
+    letter-spacing: 0;
+  }
+
+  .hero-sub {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 72px;
+    align-items: end;
+    margin-top: 56px;
+  }
+  .hero-sub .lead {
+    font-family: var(--serif-cn);
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--text);
+    font-weight: 400;
+  }
+  .hero-sub .lead .key { color: var(--accent); }
+  .hero-sub p {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text-dim);
+  }
+  .hero-sub p .src {
+    display: inline-block;
+    color: var(--muted);
+    border-bottom: 1px dotted var(--border2);
+    padding-bottom: 1px;
+  }
+
+  /* Context strip */
+  .context {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-top: 80px;
+  }
+  .ctx-item {
+    padding: 32px 28px;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .ctx-item:last-child { border-right: none; }
+  .ctx-key {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .ctx-val {
+    font-family: var(--serif-cn);
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .ctx-val .unit {
+    font-size: 13px;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+  .ctx-val .accent { color: var(--accent); }
+  .ctx-val .plus { color: var(--accent); font-size: 18px; }
+
+  /* Section head */
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 22px;
+    margin: 110px 0 44px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sec-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+  }
+  .sec-title {
+    font-family: var(--serif-cn);
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .sec-en {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  /* Notes grid */
+  .notes {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+  }
+  .note {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px 28px 28px;
+    position: relative;
+    transition: border-color 0.4s, background 0.4s, transform 0.4s;
+    overflow: hidden;
+  }
+  .note::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border2) 50%, transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .note:hover {
+    border-color: var(--border2);
+    background: var(--bg3);
+  }
+  .note:hover::before { opacity: 1; }
+
+  .note-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .note-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+  }
+  .note-num .feat {
+    color: var(--gold);
+    margin-left: 8px;
+    opacity: 0.8;
+  }
+  .note-arrow {
+    color: var(--muted);
+    transition: color 0.3s, transform 0.4s cubic-bezier(0.5, 1.5, 0.5, 1);
+    font-family: var(--serif-en);
+    font-size: 16px;
+  }
+  .note:hover .note-arrow {
+    color: var(--text);
+    transform: translateX(6px);
+  }
+
+  .note h3 {
+    font-family: var(--serif-cn);
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--text);
+    line-height: 1.35;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .note p {
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--text-dim);
+  }
+  .note p .em { color: var(--text); }
+  .note .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--border);
+  }
+  .note .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    opacity: 0.85;
+  }
+
+  /* Layout variants */
+  .note--7 { grid-column: span 7; }
+  .note--5 { grid-column: span 5; }
+  .note--8 { grid-column: span 8; }
+  .note--4 { grid-column: span 4; }
+  .note--12 { grid-column: span 12; }
+
+  .note--feature {
+    background: linear-gradient(135deg, rgba(232, 74, 31, 0.07) 0%, rgba(232, 74, 31, 0.01) 60%, var(--bg2) 100%);
+    border-color: rgba(232, 74, 31, 0.22);
+  }
+  .note--feature h3 { font-size: 30px; }
+  .note--feature p { font-size: 15px; line-height: 1.85; }
+  .note--feature:hover { border-color: rgba(232, 74, 31, 0.4); }
+
+  /* Big bg number inside card */
+  .note-bg {
+    position: absolute;
+    right: -10px;
+    bottom: -50px;
+    font-family: var(--serif-en);
+    font-weight: 300;
+    font-size: 220px;
+    line-height: 1;
+    color: var(--text);
+    opacity: 0.025;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+  .note > * { position: relative; z-index: 1; }
+
+  /* Quote note */
+  .note--quote {
+    grid-column: span 12;
+    background: transparent;
+    border: none;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 28px;
+    text-align: center;
+  }
+  .quote-mark {
+    font-family: var(--serif-en);
+    font-size: 60px;
+    color: var(--accent);
+    line-height: 0.5;
+    margin-bottom: 20px;
+    opacity: 0.5;
+  }
+  .quote-text {
+    font-family: var(--serif-cn);
+    font-weight: 400;
+    font-size: clamp(20px, 2.4vw, 28px);
+    line-height: 1.6;
+    color: var(--text);
+    max-width: 760px;
+    margin: 0 auto 24px;
+    letter-spacing: -0.01em;
+  }
+  .quote-text .key { color: var(--accent); }
+  .quote-attr {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+  }
+
+  /* Reference section */
+  .ref-block {
+    margin: 110px 0 60px;
+  }
+  .ref-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .ref-head::after {
     content: "";
     flex: 1;
     height: 1px;
     background: var(--border);
   }
-
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 16px;
-  }
-
-  .card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-    transition: border-color .2s;
-  }
-  .card:hover { border-color: var(--border2); }
-
-  .card-num {
-    font-size: 11px;
-    font-family: var(--mono);
-    color: var(--accent);
-    margin-bottom: 14px;
-    opacity: .7;
-  }
-  .card h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    line-height: 1.35;
-    color: #fff;
-  }
-  .card p {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.65;
-  }
-
-  /* highlight card */
-  .card-hl {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    align-items: center;
-    background: linear-gradient(135deg, rgba(91,107,255,.08), rgba(139,92,246,.06));
-    border-color: rgba(91,107,255,.25);
-  }
-  .card-hl:hover { border-color: rgba(91,107,255,.45); }
-  .card-hl .badge-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 14px;
-  }
-  .badge {
-    font-size: 12px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    background: rgba(91,107,255,.15);
-    color: rgba(180,185,255,.9);
-    border: 1px solid rgba(91,107,255,.2);
-  }
-  .card-hl-right {
+  .ref-list {
     display: flex;
     flex-direction: column;
-    gap: 14px;
   }
-  .mini-stat {
-    display: flex;
+  .ref-item {
+    display: grid;
+    grid-template-columns: 60px 1.4fr 1fr auto;
     align-items: baseline;
-    gap: 8px;
-  }
-  .mini-num {
-    font-size: 28px;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: -.02em;
-  }
-  .mini-label { font-size: 13px; color: var(--muted); }
-
-  /* cta */
-  .cta-block {
-    margin-top: 64px;
-    padding: 40px;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-  .cta-block h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 6px;
-  }
-  .cta-block p { font-size: 14px; color: var(--muted); }
-  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn {
-    display: inline-block;
-    padding: 11px 22px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
+    gap: 32px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
     text-decoration: none;
-    transition: opacity .15s, transform .15s;
-    white-space: nowrap;
+    color: var(--text);
+    transition: padding-left 0.35s cubic-bezier(0.5, 1.4, 0.5, 1);
   }
-  .btn:hover { opacity: .85; transform: translateY(-1px); }
-  .btn-primary { background: var(--accent); color: #fff; }
-  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border2); }
-
-  .footnote {
-    margin-top: 24px;
-    font-size: 12px;
+  .ref-item:first-child { border-top: 1px solid var(--border); }
+  .ref-item:hover { padding-left: 12px; }
+  .ref-num {
+    font-family: var(--mono);
+    font-size: 11px;
     color: var(--muted);
-    opacity: .6;
+  }
+  .ref-label {
+    font-family: var(--serif-cn);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+    transition: color 0.25s;
+  }
+  .ref-item:hover .ref-label { color: var(--accent); }
+  .ref-url {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    transition: color 0.25s;
+  }
+  .ref-item:hover .ref-url { color: var(--accent-soft); }
+  .ref-arrow {
+    color: var(--muted);
+    font-family: var(--serif-en);
+    font-size: 14px;
+    transition: color 0.25s, transform 0.35s;
+  }
+  .ref-item:hover .ref-arrow {
+    color: var(--accent);
+    transform: translateX(4px) translateY(-2px);
   }
 
-  @media (max-width: 600px) {
-    .stats { flex-direction: column; }
-    .stat { border-right: none; border-bottom: 1px solid var(--border); }
-    .stat:last-child { border-bottom: none; }
-    .card-hl { grid-template-columns: 1fr; }
-    .cta-block { flex-direction: column; align-items: flex-start; }
-    .hero { padding: 56px 20px 40px; }
-    .content { padding: 0 20px 60px; }
+  /* Footer */
+  .footer {
+    margin-top: 60px;
+    padding: 28px 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+  .footer-l, .footer-r { display: flex; gap: 16px; align-items: center; }
+  .footer .accent { color: var(--accent); }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .anim {
+    opacity: 0;
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .d1 { animation-delay: 0.05s; }
+  .d2 { animation-delay: 0.15s; }
+  .d3 { animation-delay: 0.3s; }
+  .d4 { animation-delay: 0.5s; }
+  .d5 { animation-delay: 0.7s; }
+  .d6 { animation-delay: 0.9s; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 24px; }
+    .hero { padding: 70px 0 50px; }
+    .big-mark { font-size: 260px; top: 60px; right: 0; }
+    .hero-sub { grid-template-columns: 1fr; gap: 24px; }
+    .context { grid-template-columns: repeat(2, 1fr); }
+    .ctx-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .ctx-item:nth-child(odd) { border-right: 1px solid var(--border); }
+    .ctx-item:nth-last-child(-n+2) { border-bottom: none; }
+    .note--7, .note--5, .note--8, .note--4, .note--12 { grid-column: span 12; }
+    .ref-item { grid-template-columns: 36px 1fr auto; }
+    .ref-url { display: none; }
+    .footer { flex-direction: column; gap: 12px; align-items: flex-start; }
+  }
+  @media (max-width: 480px) {
+    .marquee-track { animation-duration: 30s; }
   }
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="tag">个人整理 · 延伸阅读</div>
-  <h1>Agent 落地，<br>几个值得盯的方向</h1>
-  <p>Harness 工程、自进化风险、芯片底层——行业开始认真讨论 Agent 怎么在真实系统里活下去了。</p>
-
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-num">70<span>+</span></div>
-      <div class="stat-label">技术嘉宾</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">7</div>
-      <div class="stat-label">闭门研讨会</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">2</div>
-      <div class="stat-label">天，杭州</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">6<span>+</span></div>
-      <div class="stat-label">大厂技术团队</div>
-    </div>
+<!-- Scrolling marquee -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="item">AGENT NOTES <span class="sep">/</span> VOL.06 <span class="sep">/</span> 2026.07</span>
+    <span class="item"><span class="em">EXTENDED READING</span> <span class="sep">/</span> FIELD NOTES</span>
+    <span class="item">AGENT NOTES <span class="sep">/</span> VOL.06 <span class="sep">/</span> 2026.07</span>
+    <span class="item"><span class="em">EXTENDED READING</span> <span class="sep">/</span> FIELD NOTES</span>
+    <span class="item">AGENT NOTES <span class="sep">/</span> VOL.06 <span class="sep">/</span> 2026.07</span>
+    <span class="item"><span class="em">EXTENDED READING</span> <span class="sep">/</span> FIELD NOTES</span>
+    <span class="item">AGENT NOTES <span class="sep">/</span> VOL.06 <span class="sep">/</span> 2026.07</span>
+    <span class="item"><span class="em">EXTENDED READING</span> <span class="sep">/</span> FIELD NOTES</span>
   </div>
 </div>
 
-<div class="content">
+<div class="wrap">
 
-  <div class="section-eyebrow">议题方向</div>
-
-  <div class="cards">
-
-    <div class="card card-hl">
-      <div>
-        <div class="card-num">01 / highlight</div>
-        <h3>Harness：从跑得起到管得住</h3>
-        <p>Agent 跑起来只是第一步。沙箱故障、Token 成本失控、版本兼容——Day-2 运维才是真正的硬骨头。阿里云工程师讲实战。</p>
-        <div class="badge-row">
-          <span class="badge">OpenKruise Agents</span>
-          <span class="badge">OpenClaw 运维</span>
-          <span class="badge">成本控制</span>
-        </div>
-      </div>
-      <div class="card-hl-right">
-        <div class="mini-stat">
-          <span class="mini-num">Day-2</span>
-          <span class="mini-label">运维是落地真正的难题</span>
-        </div>
-        <div class="mini-stat">
-          <span class="mini-num">0</span>
-          <span class="mini-label">数据丢失的平滑升级方案</span>
-        </div>
-      </div>
+  <!-- Top bar -->
+  <div class="topbar anim d1">
+    <div class="topbar-l">
+      <span class="pulse"></span>
+      <span>AGENT NOTES · VOL.06</span>
     </div>
-
-    <div class="card">
-      <div class="card-num">02</div>
-      <h3>自进化 Agent 的错误进化风险</h3>
-      <p>记忆固化错误经验、安全对齐悄悄退化——Agent 在变强的同时可能在变"坏"。交大、港大、人大、厦大博士集体来讲。</p>
-    </div>
-
-    <div class="card">
-      <div class="card-num">03</div>
-      <h3>Agent Computer</h3>
-      <p>AI PC 是在电脑里加 AI；Agent Computer 是为 AI 重新发明计算机。原粒半导体创始人讲芯片底层逻辑。</p>
-    </div>
-
-    <div class="card">
-      <div class="card-num">04</div>
-      <h3>还有这些方向</h3>
-      <p>Coding Agent · 深度研究智能体 · Computer-Use Agent · 多智能体协同 · Agent Skills · 两场主论坛。</p>
-    </div>
-
-  </div>
-
-  <div class="cta-block">
-    <div>
-      <h2>7 月 2–3 日 · 杭州君悦酒店</h2>
-      <p>议题信息来自 AgenticAICon 2026 公开议程，官方报名入口在这里。</p>
-    </div>
-    <div class="btn-row">
-      <a class="btn btn-primary" href="https://aiorang.com/gtic/BYfmOvOhCafd2F" target="_blank" rel="noopener">报名注册</a>
-      <a class="btn btn-ghost" href="https://agenticaicon.zhidx.com/2026/" target="_blank" rel="noopener">大会官网</a>
+    <div class="topbar-r">
+      <span>EXTENDED READING</span>
+      <span class="divider">·</span>
+      <span>2026.06</span>
     </div>
   </div>
 
-  <p class="footnote">这是个人整理的延伸阅读页，不是大会官方页面。不收集任何联系方式。</p>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="big-mark anim d2">06</div>
+
+    <div class="hero-eyebrow anim d2">
+      <span class="line"></span>
+      <span>EXTENDED NOTES</span>
+      <span>—</span>
+      <span class="accent">AGENTIC AI</span>
+    </div>
+
+    <h1 class="anim d3">
+      Agent 落地，<br>
+      几个<span class="em">值得追踪</span>的方向。
+      <span class="en">Field notes</span>
+    </h1>
+
+    <div class="hero-sub anim d4">
+      <p class="lead">Harness 工程、<span class="key">自进化风险</span>、芯片底层 —— 行业开始认真讨论 Agent 怎么在真实系统里活下来。</p>
+      <p>整理自近期一个 Agent 方向公开会议的议程线索。 <span class="src">不评价嘉宾，只把线索串起来。</span></p>
+    </div>
+
+    <!-- Context strip -->
+    <div class="context anim d4">
+      <div class="ctx-item">
+        <div class="ctx-key">WHEN</div>
+        <div class="ctx-val">下月<span class="unit">· 杭州</span></div>
+      </div>
+      <div class="ctx-item">
+        <div class="ctx-key">DAYS</div>
+        <div class="ctx-val">02<span class="unit">天</span></div>
+      </div>
+      <div class="ctx-item">
+        <div class="ctx-key">SPEAKERS</div>
+        <div class="ctx-val"><span class="counter" data-target="70">0</span><span class="plus">+</span></div>
+      </div>
+      <div class="ctx-item">
+        <div class="ctx-key">SESSIONS</div>
+        <div class="ctx-val">09<span class="unit">场</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notes -->
+  <div class="sec-head anim d4">
+    <span class="sec-num">02 / NOTES</span>
+    <h2 class="sec-title">几个观察</h2>
+    <span class="sec-en">Field notes from the agenda</span>
+  </div>
+
+  <div class="notes anim d5">
+
+    <article class="note note--7 note--feature">
+      <div class="note-bg">01</div>
+      <div class="note-head">
+        <span class="note-num">01 <span class="feat">FEATURE</span></span>
+        <span class="note-arrow">↗</span>
+      </div>
+      <h3>Harness：从跑得起到管得住</h3>
+      <p>Agent 跑起来只是第一步。<span class="em">沙箱故障、Token 成本失控、版本兼容</span> —— Day-2 运维才是真正的硬骨头。讲者来自阿里云，OpenKruise Agents 核心维护者，给出 OpenClaw 真实场景下的运维实践。</p>
+      <div class="tags">
+        <span class="tag">OPENKRUISE AGENTS</span>
+        <span class="tag">OPENCLAW</span>
+        <span class="tag">DAY-2 OPS</span>
+      </div>
+    </article>
+
+    <article class="note note--5">
+      <div class="note-bg">02</div>
+      <div class="note-head">
+        <span class="note-num">02</span>
+        <span class="note-arrow">↗</span>
+      </div>
+      <h3>自进化 Agent 的"错误进化"</h3>
+      <p>记忆固化错误经验、<span class="em">安全对齐悄悄退化</span> —— Agent 在变强的同时可能在变"坏"。交大、港大、人大、厦大博士集体讲这个方向，首提 misevolution 现象。</p>
+      <div class="tags">
+        <span class="tag">SELF-EVOLVING</span>
+        <span class="tag">MISEVOLUTION</span>
+      </div>
+    </article>
+
+    <article class="note note--8">
+      <div class="note-bg">03</div>
+      <div class="note-head">
+        <span class="note-num">03</span>
+        <span class="note-arrow">↗</span>
+      </div>
+      <h3>Agent Computer：为 AI 重新发明计算机</h3>
+      <p>AI PC 是在电脑里加 AI；<span class="em">Agent Computer 是为 AI 重新发明计算机</span>。当 AI 从被调用的工具变成长期驻留、自主执行的数字体，下一代硬件应该长什么样。原粒半导体创始人讲芯片底层逻辑。</p>
+      <div class="tags">
+        <span class="tag">AGENT COMPUTER</span>
+        <span class="tag">SILICON</span>
+        <span class="tag">END-SIDE</span>
+      </div>
+    </article>
+
+    <article class="note note--4">
+      <div class="note-bg">04</div>
+      <div class="note-head">
+        <span class="note-num">04</span>
+        <span class="note-arrow">↗</span>
+      </div>
+      <h3>其它可关注</h3>
+      <p>Coding Agent · 深度研究智能体 · Computer-Use · 多智能体协同 · Agent Skills · 两场主论坛。</p>
+      <div class="tags">
+        <span class="tag">7 TRACKS</span>
+        <span class="tag">2 FORUMS</span>
+      </div>
+    </article>
+
+    <!-- Quote note -->
+    <article class="note note--quote">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">"Agentic AI 已经到来。<span class="key">真正有用的 AI 已经到来</span>。这整个系统就叫做智能体 —— 大语言模型用于思考，Harness 将一切连接在一起，就像操作系统一样。"</p>
+      <div class="quote-attr">— JENSEN HUANG · COMPUTEX 2026</div>
+    </article>
+
+  </div>
+
+  <!-- References -->
+  <div class="ref-block anim d6">
+    <div class="ref-head">REFERENCES · 公开信息</div>
+    <div class="ref-list">
+      <a class="ref-item" href="https://agenticaicon.zhidx.com/2026/" target="_blank" rel="noopener">
+        <span class="ref-num">[01]</span>
+        <span class="ref-label">公开议程</span>
+        <span class="ref-url">agenticaicon.zhidx.com</span>
+        <span class="ref-arrow">↗</span>
+      </a>
+      <a class="ref-item" href="https://aiorang.com/gtic/BYfmOvOhCafd2F" target="_blank" rel="noopener">
+        <span class="ref-num">[02]</span>
+        <span class="ref-label">报名入口</span>
+        <span class="ref-url">aiorang.com</span>
+        <span class="ref-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer anim d6">
+    <div class="footer-l">
+      <span>个人延伸阅读页</span>
+      <span class="divider">·</span>
+      <span>不收集任何信息</span>
+    </div>
+    <div class="footer-r">
+      <span>END</span>
+      <span class="divider">·</span>
+      <span class="accent">06 / 2026</span>
+    </div>
+  </div>
 
 </div>
+
+<script>
+  // Counter animation
+  document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(c => {
+      const target = parseInt(c.getAttribute('data-target'), 10);
+      const duration = 1600;
+      const start = performance.now();
+      const tick = (now) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        c.textContent = Math.floor(eased * target);
+        if (progress < 1) requestAnimationFrame(tick);
+        else c.textContent = target;
+      };
+      // Delay until visible/animated in
+      setTimeout(() => requestAnimationFrame(tick), 800);
+    });
+  });
+</script>
 
 </body>
 </html>
